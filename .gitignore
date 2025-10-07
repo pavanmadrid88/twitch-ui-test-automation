@@ -1,0 +1,67 @@
+# ----------------------------
+# Python-related ignores
+# ----------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pkl
+*.log
+*.tmp
+*.swp
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+*.env
+
+# Byte-compiled / cache
+.pytest_cache/
+.cache/
+.playwright/
+allure-results/
+allure-report/
+
+# ----------------------------
+# Test reports & artifacts
+# ----------------------------
+# Pytest HTML reports
+report.html
+*.html
+
+# Screenshots, videos, logs
+artifacts/
+logs/
+*.png
+*.mp4
+
+# ----------------------------
+# IDE / editor files
+# ----------------------------
+.vscode/
+.idea/
+*.iml
+
+# ----------------------------
+# OS-specific files
+# ----------------------------
+.DS_Store
+Thumbs.db
+
+# ----------------------------
+# Distribution / packaging
+# ----------------------------
+build/
+dist/
+*.egg-info/
+.eggs/
+MANIFEST
+
+# ----------------------------
+# Miscellaneous
+# ----------------------------
+# Temporary or generated files
+tmp/
+output/
