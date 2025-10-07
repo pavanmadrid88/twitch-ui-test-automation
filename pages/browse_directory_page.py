@@ -6,15 +6,26 @@ from utils.ui_test_utils import get_logger
 class BrowseDirectoryPage(BasePage):
     streamer_card = 'a[data-a-target="preview-card-image-link"]'
     search_input = 'input[type="search"]'
-    star_craft_ii_search_image_icon = "img[alt = 'StarCraft II']"
 
-    def search_for(self, query: str) -> SearchResultsPage:
-        """Fill the query, click search image and return a SearchResultsPage object."""
+    def search_for(self, query: str) -> "SearchResultsPage":
+        """Fill the query, click matching game image (case-insensitive), and return a SearchResultsPage."""
+        get_logger().info(f"Searching for : {query}")
         self.safe_fill(self.search_input, query)
-        self.page.click(self.star_craft_ii_search_image_icon)
-        # wait for results page load
+
+        # build case-insensitive selector for img[alt]
+        locator = self.page.locator(f"img[alt~='{query}'], img[alt='{query}']")
+        # fallback: use JS case-insensitive matching
+        matching_img = self.page.locator(
+            f"xpath=//img[translate(@alt, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')="
+            f"'{query.lower()}']"
+        )
+
         try:
-            self.page.wait_for_load_state("networkidle", timeout=5000)
+            if locator.count() > 0:
+                locator.first.click()
+            else:
+                matching_img.first.click()
         except Exception:
-            get_logger().warn("Exception while checking the page load state for SearchResults page")
+            get_logger().warn(f"No image found matching alt='{query}' (case-insensitive)")
+
         return SearchResultsPage(self.page)

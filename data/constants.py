@@ -7,6 +7,7 @@ class URL:
 
 class SearchText:
     STARCRAFT_II = "StarCraft II"
+    CHESS = "Chess"
 
 
 class ScreenshotFileNames:

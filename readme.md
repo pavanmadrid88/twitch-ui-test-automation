@@ -66,29 +66,29 @@ pip install -r requirements.txt
 
 ### 3. Run all tests
 ```bash
-pytest -n auto --html=report.html --self-contained-html
+pytest -n auto --html=artifcats/report.html --self-contained-html
 ```
 - -n auto → Runs tests in parallel using all available CPU cores (via pytest-xdist).
-- --html=report.html → Generates an HTML test report named report.html.
+- --html=artifacts/report.html → Generates an HTML test report named report.html under artifacts directory.
 - --self-contained-html → Embeds all CSS and JS into the report so it’s fully standalone
-
+- If you don’t specify any arguments when running pytest, the default options defined in the pytest.ini file will be used.
 
 ### 4. Generate HTML report
-After test execution, the HTML report will be automatically generated in the artifacts directory.
+After test execution, the HTML report will be automatically generated in the **artifacts** directory.
 
 ---
 
 ## Notes
 - The framework uses **Pytest** as test runner and **Playwright** for browser automation.
-- conftest.py — provides Playwright pytest fixtures (pw, browser, context, page), CLI options (--device, --headless),
-  logging fixture, and a failure hook that captures/attaches screenshots to pytest-html.
+- **conftest.py** — provides Playwright pytest fixtures (pw, browser, context, page), CLI options (--device, --headless),
+  logging fixture, and a failure hook that captures/attaches screenshots to pytest-html report file.
 - Page Object Model design pattern is followed in the framework.
-- BasePage class encapsulates common browser actions such as clicking, typing, waiting for elements, and navigation.
-- Each individual page (e.g., HomePage, StreamerPage etc) inherits from BasePage, ensuring code re-usability and 
+- **BasePage** class encapsulates common browser actions such as clicking, typing, waiting for elements, and navigation.
+- Each individual page (e.g., HomePage, StreamerPage etc) inherits from **BasePage**, ensuring code re-usability and 
   consistency across tests.
-- Under utils directory -> ui_test_utils.py includes a get_logger() helper for consistent logging across tests
+- Under utils directory -> **ui_test_utils.py** includes a **get_logger()** helper for consistent logging across tests
   and can be extended with additional UI utilities.
-- Logs are stored in /logs/ directory.
-- HTML report & all screenshots captured during test execution are stored under the artifacts directory.
+- Logs are stored in **/logs/** directory.
+- **HTML report** & all **screenshots** captured during test execution are stored under the **artifacts** directory.
 ---
 

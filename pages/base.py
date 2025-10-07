@@ -191,7 +191,7 @@ class BasePage:
             # Wait a short while for page content to load after each scroll
             self.custom_wait(condition=lambda: True, max_wait=wait_time)
 
-            # Optional: wait briefly for network to stabilize (replacement for load_state)
+            # wait briefly for network to stabilize
             try:
                 self.custom_wait(
                     condition=lambda: self.page.evaluate("document.readyState === 'complete'"),
@@ -225,7 +225,7 @@ class BasePage:
 
         while time.time() - start_time < max_wait:
             try:
-                # 1️Custom condition check (optional)
+                # 1️Custom condition check
                 if condition and condition():
                     return True
 

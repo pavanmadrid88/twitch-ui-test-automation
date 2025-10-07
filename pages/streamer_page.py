@@ -34,12 +34,10 @@ class StreamerPage(BasePage):
         return out_path
 
     def handle_video_consent(self):
-
-        found = self.custom_wait(element=self.consent_start_watching_button, max_wait=5, check_type="visible")
-        if found:
+        video_consent_message = self.custom_wait(element=self.consent_start_watching_button,
+                                                 max_wait=5, check_type="visible")
+        if video_consent_message:
             self.safe_click(self.consent_start_watching_button)
-        else:
-            get_logger().info("video consent confirmation not found")
 
     def get_streamer_video_channel_name(self):
         return self.get_text(self.streamer_channel_name)
