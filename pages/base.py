@@ -1,8 +1,6 @@
-# pages/base_page.py
 from typing import Optional
 from playwright.sync_api import Page
 import time
-from utils.ui_test_utils import get_logger
 
 class BasePage:
     def __init__(self, page: Page):

@@ -1,8 +1,5 @@
 import os
-import time
-
 from pages.base import BasePage
-from utils.ui_test_utils import get_logger
 
 
 class StreamerPage(BasePage):

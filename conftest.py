@@ -1,4 +1,3 @@
-# conftest.py
 """
 Conftest that launches the installed Google Chrome and applies Playwright device emulation.
 
@@ -33,9 +32,9 @@ except Exception:
     extras = None
     _HAVE_PYTEST_HTML = False
 
-# sensible default timeout (ms)
-DEFAULT_TIMEOUT_MS = int(os.getenv("DEFAULT_TIMEOUT_MS", "15000"))
-DEFAULT_DEVICE = "Pixel 5"
+# Default timeout and Mobile Emulator device
+DEFAULT_TIMEOUT_MS = data.constants.Config.DEFAULT_TIMEOUT_MS
+DEFAULT_DEVICE = data.constants.MobileEmulatorDevice.PIXEL_5
 
 
 def pytest_addoption(parser):
@@ -128,7 +127,7 @@ def page(request, context: BrowserContext) -> Page:
         pass
 
 @pytest.fixture
-def get_logger_fix(request):
+def logger(request):
     test_name = request.node.name
     return get_logger(test_name)
 

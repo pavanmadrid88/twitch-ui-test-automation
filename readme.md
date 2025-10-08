@@ -68,9 +68,13 @@ pip install -r requirements.txt
 ```bash
 pytest -n auto --html=artifcats/report.html --self-contained-html
 ```
-- -n auto → Runs tests in parallel using all available CPU cores (via pytest-xdist).
-- --html=artifacts/report.html → Generates an HTML test report named report.html under artifacts directory.
-- --self-contained-html → Embeds all CSS and JS into the report so it’s fully standalone
+- The framework supports runtime configuration through pytest command-line options.
+- By default, tests run using the **Google Pixel 5 mobile emulator** on Google Chrome.
+- You can override this by passing a different device name through the --device argument, for example: pytest --device="iPhone 12"
+- Tests run in headed mode (visible browser window) by default. Use --headless if you would like to run tests in headless mode.
+- **-n auto** → Runs tests in parallel using all available CPU cores (via pytest-xdist). 
+- **--html=artifacts/report.html** → Generates an HTML test report named report.html under artifacts directory.
+- **--self-contained-html** → Embeds all CSS and JS into the report so it’s fully standalone
 - If you don’t specify any arguments when running pytest, the default options defined in the pytest.ini file will be used.
 
 ### 4. Generate HTML report
@@ -83,6 +87,8 @@ After test execution, the HTML report will be automatically generated in the **a
 - **conftest.py** — provides Playwright pytest fixtures (pw, browser, context, page), CLI options (--device, --headless),
   logging fixture, and a failure hook that captures/attaches screenshots to pytest-html report file.
 - Page Object Model design pattern is followed in the framework.
+- All environment and configuration constants (e.g., default device, timeouts, URLs, and screenshot paths) are
+  centralized in **data/constants.py**.
 - **BasePage** class encapsulates common browser actions such as clicking, typing, waiting for elements, and navigation.
 - Each individual page (e.g., HomePage, StreamerPage etc) inherits from **BasePage**, ensuring code re-usability and 
   consistency across tests.

@@ -1,6 +1,4 @@
-# pages/search_results_page.py
 import random
-
 from pages.base import BasePage
 from pages.streamer_page import StreamerPage
 

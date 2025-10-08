@@ -1,4 +1,3 @@
-import utils.ui_test_utils
 from pages.base import BasePage
 from pages.search_results_page import SearchResultsPage
 from utils.ui_test_utils import get_logger
